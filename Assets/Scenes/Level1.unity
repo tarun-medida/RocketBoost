@@ -420,6 +420,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1892520810355344309, guid: 7376524a8c8fa95459cd0bdbfcbd1d5e, type: 3}
+      propertyPath: mainEngine
+      value: 
+      objectReference: {fileID: 8300000, guid: effe23ff4a8dc5a48b88dfe6984dca42, type: 3}
     - target: {fileID: 8486840038601762317, guid: 7376524a8c8fa95459cd0bdbfcbd1d5e, type: 3}
       propertyPath: m_Name
       value: Rocket
