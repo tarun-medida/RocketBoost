@@ -40,43 +40,71 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(mainEngine);
-                //audioSource.Play();
-            }
-            if (!boost.isPlaying)
-            {
-                boost.Play();
-            }
+            StartThrust();
         }
         else
         {
-            audioSource.Stop();
-            boost.Stop();
+            StopThrusting();
         }
     }
+
+
+    void StartThrust()
+    {
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+            //audioSource.Play();
+        }
+        if (!boost.isPlaying)
+        {
+            boost.Play();
+        }
+    }
+    void StopThrusting()
+    {
+        audioSource.Stop();
+        boost.Stop();
+    }
+
     void ProcessRotation()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotateThrust);
-            if(!wingBoostLeft.isPlaying)
-                wingBoostLeft.Play();
+            RotateLeft();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotateThrust);
-            if(!wingBoostRight.isPlaying)
-                wingBoostRight.Play();
+            RotateRight();
         }
         else
         {
-            wingBoostLeft.Stop();
-            wingBoostRight.Stop();
+            StopRotate();
         }
     }
+    void RotateLeft()
+    {
+        ApplyRotation(rotateThrust);
+        if (!wingBoostLeft.isPlaying)
+            wingBoostLeft.Play();
+    }
+
+    void RotateRight()
+    {
+        ApplyRotation(-rotateThrust);
+        if (!wingBoostRight.isPlaying)
+            wingBoostRight.Play();
+    }
+
+    void StopRotate()
+    {
+        wingBoostLeft.Stop();
+        wingBoostRight.Stop();
+    }
+
+    
+
     void ApplyRotation(float rotationThisFrame)
     {
         rb.freezeRotation = true;
